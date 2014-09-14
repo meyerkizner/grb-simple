@@ -2,7 +2,7 @@ var grb = require('grb-client');
 var items = document.querySelector("#items");
 var input = document.querySelector("#input");
 
-grb.ws_blob('/', function (blob, object) {
+grb.ws_blob('/todo', function (blob, object) {
     if (!blob.read('list')) {
         blob.create('list', {});
     }
