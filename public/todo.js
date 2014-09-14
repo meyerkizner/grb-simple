@@ -7,7 +7,12 @@ input.onkeydown = function(e) {
     }
 };
 
+var clear;
+
 grb.ws_blob('http://localhost:8080/todo', function (blob, object) {
+    clear = function(){
+      blob.update("list", []);
+    };
     blob.addKeyword('list');
     // If a list doesn't already exist create it.
     // otherwise, populate the ui with the todo items.
@@ -39,3 +44,5 @@ function makeTodoItem(contents) {
     item.textContent = contents;
     items.insertBefore(item, input);
 }
+
+
