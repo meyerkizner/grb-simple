@@ -29,7 +29,8 @@ var io = socketio.listen(server);
 })();
 
 (function () {
+  var mongo = new grb.facets.MongoFacet('mongodb://localhost:27017/grb');
   var memory = new grb.facets.MemoryFacet();
   var broadcast = new grb.facets.BroadcastFacet();
-  grb.serve(io, '/track', 'com.prealpha.grb', 'Tracking', [memory, broadcast]);
+  grb.serve(io, '/track', 'com.prealpha.grb', 'Tracking', [mongo, memory, broadcast]);
 })();
