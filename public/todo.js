@@ -1,17 +1,20 @@
 var grb = require('grb-client');
 var items = document.querySelector("#items");
 var input = document.querySelector("#input");
+var title = document.querySelector("h1");
 input.onkeydown = function(e) {
     if (e.keyCode == 13 && input.onenter) {
         input.onenter();
     }
 };
 
-var clear;
 
 grb.ws_blob('http://localhost:8080/todo', function (blob, object) {
-    clear = function(){
+    title.onclick = function(){
       blob.update("list", []);
+      while (items.children.length > 1) {
+        items.removeChild(items.firstChild);
+      }
     };
     blob.addKeyword('list');
     // If a list doesn't already exist create it.
@@ -19,6 +22,7 @@ grb.ws_blob('http://localhost:8080/todo', function (blob, object) {
     if (!blob.read('list')) {
         blob.create('list', []);
     } else {
+      console.log("loading", blob.store.list);
         blob.store.list.forEach(function (v){
             makeTodoItem(v);
         });
