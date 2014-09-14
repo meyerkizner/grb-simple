@@ -1,8 +1,7 @@
 var grb = require('grb-client');
-grb.ws_blob('/', function (blob, object) {
+grb.ws_blob('/track', function (blob, object) {
     blob.addKeyword('x');
     blob.addKeyword('y');
-    console.log("foo");
 
     var canvas = document.querySelector("canvas");
     var ctx = canvas.getContext("2d");
