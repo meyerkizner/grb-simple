@@ -12,15 +12,17 @@ grb.ws_blob('/todo', function (blob, object) {
         makeTodoItem(k);
     }
 
-    // On enter,
+    // On enter, push new values
     input.onkeydown = function(e) {
-        if (e.keyCode == 13) {
-            blob.create("list." + input.value, input.value);
-            input.value = "";
-        }
-    };
+    if (e.keyCode == 13) {
+        blob.create("list." + input.value, input.value);
+        input.value = "";
+    }};
 
+    // When an item is added to the global object,
+    // drop it into the ui.
     blob.on('create', function(p, k, v) {
+        if (k === 'list') return;
         makeTodoItem(v);
     });
 });
