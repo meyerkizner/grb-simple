@@ -8,6 +8,7 @@ input.onkeydown = function(e) {
 };
 
 grb.ws_blob('http://localhost:8080/todo', function (blob, object) {
+    blob.addKeyword('list');
     // If a list doesn't already exist create it.
     // otherwise, populate the ui with the todo items.
     if (!blob.read('list')) {
@@ -18,11 +19,9 @@ grb.ws_blob('http://localhost:8080/todo', function (blob, object) {
         });
     }
 
-    var todoList = object.list;
-
     // On enter, push new values
     input.onenter = function() {
-        todoList.push(input.value);
+        object.list.push(input.value);
         input.value = "";
     };
 
