@@ -18,6 +18,8 @@ grb.ws_blob('/', function (blob, object) {
     blob.on('create', function(p, k, v) {
         console.log(v);
         var item = document.createElement('li');
+        item.style.maxHeight = '0px';
+        setTimeout(function(){item.style.maxHeight="50px";}, 50);
         item.textContent = v;
         items.insertBefore(item, input);
     });
