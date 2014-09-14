@@ -7,8 +7,6 @@
     blob.withKeywords("value");
     var object = blob.mirror();
 
-    object.value = "";
-
     blob.on('all', function() {
         sp.textContent = object.value;
     });

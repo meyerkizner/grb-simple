@@ -11,4 +11,6 @@ server.listen(8080);
 
 app.use(express.static(__dirname + '/public'));
 
-grb.serve(server, grb.IN_MEMORY, 'com.prealpha', 'HelloWorld');
+var memory = new grb.facets.MemoryFacet();
+var broadcast = new grb.facets.BroadcastFacet();
+grb.serve(server, '/', 'com.prealpha', 'HelloWorld', [memory, broadcast]);
