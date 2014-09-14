@@ -1,28 +1,33 @@
 var grb = require('grb-client');
 var items = document.querySelector("#items");
 var input = document.querySelector("#input");
+input.onkeydown = function(e) {
+    if (e.keyCode == 13 && input.onenter) {
+        input.onenter();
+    }
+};
 
-grb.ws_blob('/todo', function (blob, object) {
+grb.ws_blob('http://localhost:8080/todo', function (blob, object) {
     if (!blob.read('list')) {
-        blob.create('list', {});
+        blob.create('list', []);
+    } else {
+        // Build existing items
+        blob.store.list.forEach(function (v){
+            makeTodoItem(v);
+        });
     }
 
-    // Build existing items
-    for (var k in blob.store.list) {
-        makeTodoItem(k);
-    }
+    var todoList = object.list;
 
     // On enter, push new values
-    input.onkeydown = function(e) {
-    if (e.keyCode == 13) {
-        blob.create("list." + input.value, input.value);
+    input.onenter = function() {
+        todoList.push(input.value);
         input.value = "";
-    }};
+    };
 
     // When an item is added to the global object,
     // drop it into the ui.
-    blob.on('create', function(p, k, v) {
-        if (k === 'list') return;
+    blob.on('arrPush', function(p, k, v) {
         makeTodoItem(v);
     });
 });
