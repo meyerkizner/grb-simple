@@ -1,16 +1,36 @@
 <html>
     <head>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="./todo.css" />
     </head>
     <body>
-        <canvas width=800 height=800>
-        </canvas>
+        <div id="app">
+            <h1> Movement </h1>
+            <canvas width=300 height=300>
+            </canvas>
+        </div>
+        <div id="code">
+<pre>
+<span class="highlight">grb.ws_blob('/', function (blob, object) {
+    blob.addKeyword('x');
+    blob.addKeyword('y');</span>
 
+
+    var canvas = document.querySelector("canvas");
+    var ctx = canvas.getContext("2d");
+
+    canvas.onmousemove = function(event) {
+        <span class="highlight">object.x</span> = event.pageX - canvas.offsetLeft;
+        <span class="highlight">object.y</span> = event.pageY - canvas.offsetTop;
+    };
+
+
+    <span class="highlight">blob.on('all', function() {</span>
+        ctx.clearRect(0,0, 1000, 1000);
+        ctx.fillRect(<span class="highlight">object.x</span> - 10, <span class="highlight">object.y</span> - 10, 20, 20);
+    });
+});
+</pre>
+        </div>
         <script src="grb.js"></script>
         <script src="socket.io.js"></script>
         <script src="tracking.js"></script>

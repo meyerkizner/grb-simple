@@ -5,14 +5,15 @@ grb.ws_blob('/', function (blob, object) {
     console.log("foo");
 
     var canvas = document.querySelector("canvas");
-    var canvasContext = canvas.getContext("2d");
+    var ctx = canvas.getContext("2d");
 
     canvas.onmousemove = function(event) {
-        object.x = event.clientX;
-        object.y = event.clientY;
+        object.x = event.pageX - canvas.offsetLeft;
+        object.y = event.pageY - canvas.offsetTop;
     };
 
     blob.on('all', function(){
-        canvasContext.fillRect(object.x - 2.5, object.y - 2.5, 5, 5);
+        ctx.clearRect(0,0, 1000, 1000);
+        ctx.fillRect(object.x - 10, object.y - 10, 20, 20);
     });
 });
