@@ -14,25 +14,33 @@
         </div>
         <div id="code">
 <pre>
-<span class="highlight">
-grb.ws_blob('/todo', function (blob, object) {
+<span class="highlight"> grb.ws_blob('http://localhost:8080/todo', function (blob, object) {
+    // If a list doesn't already exist create it.
+    // otherwise, populate the ui with the todo items.
     if (!blob.read('list')) {
-        blob.create('list', {});
-    }</span>
+        blob.create('list', []);
+    } else {
+        blob.store.list.forEach(function (v){
+            makeTodoItem(v);
+        });
+    }
 
-    input.onkeydown = function(e) {
-        if (e.keyCode == 13) {
-            <span class="highlight">blob.create("list." + input.value, input.value);</span>
-            input.value = "";
-        }
+    var todoList = object.list;</span>
+
+    // On enter, push new values
+    input.onenter = function() {
+        <span class="highlight">todoList.push(input.value);</span>
+        input.value = "";
     };
 
-    <span class="highlight">blob.on('create', function(p, k, v)</span> {
-        var item = document.createElement('li');
-        item.textContent = v;
-        items.insertBefore(item, input);
-    });
+    // When an item is added to the global object,
+    // drop it into the ui.
+    <span class="highlight">
+    blob.on('arrPush', function(p, k, v) {
+        makeTodoItem(v);
+    });</span>
 });
+
 </pre>
         </div>
         <script src="grb.js"></script>
