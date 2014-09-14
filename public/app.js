@@ -3,7 +3,7 @@
   var grb = require('grb-client');
   var sp = document.querySelector("#msg");
 
-  grb.ws_blob('/', function (blob) {
+  grb.ws_blob('/HelloWorld', function (blob) {
     blob.withKeywords("value");
     var object = blob.mirror();
 
