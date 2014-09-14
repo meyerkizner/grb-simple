@@ -7,7 +7,12 @@ grb.ws_blob('/todo', function (blob, object) {
         blob.create('list', {});
     }
 
-    console.log('loaded');
+    // Build existing items
+    for (var k in blob.store.list) {
+        makeTodoItem(k);
+    }
+
+    // On enter,
     input.onkeydown = function(e) {
         if (e.keyCode == 13) {
             blob.create("list." + input.value, input.value);
@@ -16,11 +21,14 @@ grb.ws_blob('/todo', function (blob, object) {
     };
 
     blob.on('create', function(p, k, v) {
-        console.log(v);
-        var item = document.createElement('li');
-        item.style.maxHeight = '0px';
-        setTimeout(function(){item.style.maxHeight="50px";}, 50);
-        item.textContent = v;
-        items.insertBefore(item, input);
+        makeTodoItem(v);
     });
 });
+
+function makeTodoItem(contents) {
+    var item = document.createElement('li');
+    item.style.maxHeight = '0px';
+    setTimeout(function(){item.style.maxHeight="50px";}, 50);
+    item.textContent = contents;
+    items.insertBefore(item, input);
+}
