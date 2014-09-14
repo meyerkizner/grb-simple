@@ -1,0 +1,68 @@
+html, body {
+    background: url('bg.png');
+    margin: 0;
+    padding: 0;
+
+}
+
+* {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+h1 {
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 80px;
+    text-shadow: rgba(0, 0, 0, 0.2) -1px -1px 0px;
+    text-align: center;
+}
+
+#todo-wrapper {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    width: 500px;
+}
+
+ul {
+    list-style-type: none;
+    font-size: 30px;
+    text-shadow: rgba(0, 0, 0, 0.2) -1px -1px 0px;
+    box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2),
+				0 25px 50px 0 rgba(0, 0, 0, 0.15);
+    background: white;
+    padding: 10px;
+    border-top: 15px solid brown;
+}
+
+li {
+    border-bottom: 1px dotted rgba(0,0,0, 0.2);
+    padding: 10px;
+}
+li:last-child {
+    border-bottom: none;
+}
+
+#input {
+    width: 480px;
+    height: 45px;
+    font-size: 30px;
+    padding: 9px;
+}
+
+#app {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#code {
+    margin: 0;
+    padding: 30px;
+    background: white;
+    font-size: 30px;
+    line-height: 35px;
+}
+
+.highlight {
+    background: rgba(100,100,255,0.3);
+}

@@ -1,0 +1,27 @@
+{
+  "name": "grb-simple",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.9.0",
+    "grb-client": "^1.0.0",
+    "grb-server": "^1.0.0",
+    "grb-shared": "^1.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/meyerkizner/grb-simple.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/meyerkizner/grb-simple/issues"
+  },
+  "homepage": "https://github.com/meyerkizner/grb-simple"
+}

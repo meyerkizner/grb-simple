@@ -1,0 +1,42 @@
+<html>
+    <head>
+        <title> GLOBAL TODO </title>
+    </head>
+    <link rel="stylesheet" type="text/css" href="./todo.css" />
+    <body>
+        <div id="app">
+            <div id="todo-wrapper">
+                <h1> todos </h1>
+                <ul id="items">
+                    <input type="text" id="input" />
+                </ul>
+            </div>
+        </div>
+        <div id="code">
+<pre>
+<span class="highlight">
+grb.ws_blob('/', function (blob, object) {
+    if (!blob.read('list')) {
+        blob.create('list', {});
+    }</span>
+
+    input.onkeydown = function(e) {
+        if (e.keyCode == 13) {
+            <span class="highlight">blob.create("list." + input.value, input.value);</span>
+            input.value = "";
+        }
+    };
+
+    <span class="highlight">blob.on('create', function(p, k, v)</span> {
+        var item = document.createElement('li');
+        item.textContent = v;
+        items.insertBefore(item, input);
+    });
+});
+</pre>
+        </div>
+        <script src="grb.js"></script>
+        <script src="socket.io.js"></script>
+        <script src="todo.js"></script>
+    </body>
+</html>
