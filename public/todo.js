@@ -8,10 +8,11 @@ input.onkeydown = function(e) {
 };
 
 grb.ws_blob('http://localhost:8080/todo', function (blob, object) {
+    // If a list doesn't already exist create it.
+    // otherwise, populate the ui with the todo items.
     if (!blob.read('list')) {
         blob.create('list', []);
     } else {
-        // Build existing items
         blob.store.list.forEach(function (v){
             makeTodoItem(v);
         });
